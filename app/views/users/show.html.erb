@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="left_sidebar_wrapper">
+<div class="left_sidebar_icon_wrapper1">
+<a href= "http://localhost:3001/posts/index">
+    <i class="left_sidebar_icon fas fa-comment" ></i>
+    </a>
+</div>
+
+<div class="left_sidebar_icon_wrapper">
+<div class="left_sidebar-i">
+<i class="left_sidebar_icon fas fa-home"></i>
+</div>
+<div class="icon-text-li-show">
+<%=link_to("ホーム","/posts/index")%>
+</div>
+</div>
+
+
+<div class="left_sidebar_icon_wrapper">
+<div class="left_sidebar-i">
+<i class="left_sidebar_icon fas fa-user"></i>
+</div>
+<div class="icon-text-li-show">
+<% if @current_user %>
+  <%= link_to("プロフィール", "/users/#{@current_user.id}") %>
+  <% end %>
+</div>
+</div>
+
+<div class="left_sidebar_icon_wrapper">
+<div class="left_sidebar-i">
+<i class="left_sidebar_icon fas fa-users"></i>
+</div>
+<div class="icon-text-li-show">
+<%=link_to("ユーザー一覧","/users/index")%>
+</div>
+</div>
+
+<div class="left_sidebar_icon_wrapper">
+<div class="left_sidebar-i">
+<i class="left_sidebar_icon fas fa-sign-out-alt"></i>
+</div>
+<div class="icon-text-li-show">
+<%=link_to("ログアウト","/logout",{method: "post"})%>
+</div>
+</div>
+<span id="back">
+    <a href="">
+     <i class="up-icon fas fa-arrow-circle-up"></i>
+    </a>
+  </span>
+<div class="left_sidebar_icon_wrapper-show" style="margin-top:229px;margin-left:50px;">
+<div class="icon-text-li-show">
+<% if @current_user %>
+<%=link_to("/users/#{@current_user.id}") do %>
+<img class="user-image-inner" style="float:left;" src="<%= "/user_images/#{@current_user.image_name}" %>">
+  <% end %>
+  <div class="show-left-name">
+  <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
+  </div>
+  <% end %>
+</div>
+</div>
+</div>
+
+<div class="main-user-show">
+  <div class="user-container">
+  <div class="user-heading">
+    <h2>PROFILE</h2>
+    </div>
+    <div class="user-form">
+       <img class="user-image-inners" src="<%= "/user_images/#{@user.image_name}" %>">
+      <div class="user-name-form">
+      <div class="user-name-email">
+      <div class="user-name-form-name">
+      <h2>NAME:</h2>
+      <h2 class="username"><%= @user.name %></h2>
+      </div>
+      <div class="user-name-form-email">
+      <h2>EMAIL:</h2>
+      <h2 class="useremail"><%= @user.email %></h2>
+      </div>
+      </div>
+      <div class="show-button-wrapper">
+      <button type="button" class="edit-name-email btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style="background-color:orange; border-color:orange; ;">編集</button>
+      <button type="button" class="btn btn-info"><%=link_to("ログアウト","/logout",{method: "post"})%></button>
+      </div>
+      </div>
+      </div>
+      </div>
+
+      <div class="posts-show-container">
+      <h2>投稿・コメント一覧</h2>
+      </div>
+      <div class="posts-index-max">
+       <div class="posts-index-wrapper">
+      <% @user.posts.order(created_at: :desc).each do |post|%>
+      <div class="posts-index-item-show">
+        <div class="post-left-show">
+          <img class="post-left-inner" src="<%= "/user_images/#{post.user.image_name}" %>">
+        </div>
+        <div class="post-right-show">
+          <div class="post-user-name-show">
+            <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+          </div>
+          <div class="posts-user-content-show">
+          <%= link_to(post.content, "/posts/#{post.id}") %>
+        </div>
+        
+        <div class="like-b-time">
+         <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
+    <%=link_to("/likes/#{post.id}/destroy",{method: "post"} )do %>
+  <i class="liked-btn-show fas fa-heart"></i>
+  <% end %>
+      <% else %>
+    <%=link_to("/likes/#{post.id}/create", {method: "post"}) do %>
+    <i class="unliked-btn-show far fa-heart"></i>
+        <%end%>
+      <% end %>
+        <%  @likes_count = Like.where(post_id: post.id).count%>
+    <%= @likes_count %>
+
+        <div class="post-created-time-show">
+        <%= post.created_at.strftime("%Y-%m-%d %H:%M") %> 
+        </div>
+        </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  </div>
+  
+
+  
+  
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border-radius:20px;">
+  <div class="edit-container">
+    <div class="edit-form-heading">プロフィールを編集</div>
+    <div class="form-users-form">
+      <div class="edit-form-body">
+       <% @user.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+         <%= form_tag("/users/#{@user.id}/update",{multipart: true}) do %>
+        
+         <div class="edit-textlines">
+         <div class="edit-text">名前</div>
+        <input  class="edit-textlines-inner"  value="<%=@user.name %>" name="name" >
+        </div>
+        <div class="edit-textlines">
+        <div class="edit-text">メールアドレス</div>
+        <input class="edit-textlines-inner" value="<%=@user.email %>" name="email">
+        <div class="img-edit">
+        <div class="file-up">
+        <input name="image" type="file">
+        </div>
+        </div>
+        <div class="submit-form">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div class="edit-submit1">
+        <input type="submit" value="保存" class="edit-submit">
+         </div>
+         </div>
+         <% end %>
+    
+    </div>
+  </div>
+</div>
+
+      
+    </div>
+  </div>
+  
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+

@@ -1,0 +1,80 @@
+<%=render "ranks/rank" %>
+<%=render "layouts/left_sidebar" %>
+
+
+<div class="main-posts-new">
+  <div class="posts-index-container">
+  <div class="posts-form-heading-max">
+    <h1 class="posts-form-heading">タイムライン</h1>
+    </div>
+      <%= form_tag("/posts/create") do %>
+    <div class="post-form">
+      <div class="post-form-body">
+    <img  class="post-image-inner" src="<%= "/user_images/#{@current_user.image_name}" %>" >
+        <div class="posts-create-new">
+        <textarea class="posts-create" name="content" placeholder="いまどうしてる？"></textarea>
+        </div>
+        <input class="post-submit" type="submit" value="投稿">
+      </div>
+    </div>
+        <% end %>
+  </div>
+</div>
+
+  
+
+
+<!--ツイート投稿欄-->
+
+<div class="main-posts-index">
+  <div class="posts-container">
+    <% @posts.each do |post| %>
+      <div class="posts-index-item">
+      <div class="post-left">
+      <%=link_to("/users/#{post.user.id}/info") do %>
+         <img class="user-image-inner" src="<%= "/user_images/#{post.user.image_name}" %>">
+        <% end %>
+        </div>
+        <div class="post-right">
+        <div class="post-user-name">
+        <%= link_to(post.user.name,"/users/#{post.user.id}/info") %>
+        </div>
+        <div class="posts-user-content">
+        <%= link_to(post.content,"/posts/#{post.id}") %>
+      </div>
+      
+    <div class="like-btn-time">
+      <div class="like-btn-wrapper">
+      <div class="like-b">
+      <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
+      <%=link_to("/likes/#{post.id}/destroy",{method: "post"} )do %>
+  <i class="fas fa-heart liked-btn"></i>
+  <% end %>
+      <% else %>
+    <%=link_to("/likes/#{post.id}/create", {method: "post"}) do %>
+    <i class="far fa-heart unliked-btn"></i>
+        <%end%>
+      <% end %>
+      <%  @likes_count = Like.where(post_id: post.id).count%>
+    <%= @likes_count %>
+    </div>
+    <div class="comment-wrapper">
+    <%  @comments_count = Comment.where(post_id: post.id).count %>
+    <a href="/posts/<%=post.id %>">
+     <i class="far fa-comment">
+    <%= @comments_count %></i>
+    </a>
+    </div>
+    </div>
+
+      <div class="post-created-time">
+        <%= post.created_at.strftime("%Y-%m-%d %H:%M") %> 
+        </div>
+        </div>
+      </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+

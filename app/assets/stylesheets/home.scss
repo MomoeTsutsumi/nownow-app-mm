@@ -1,0 +1,61 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.toppage_wrapper{
+    display: flex;
+    height: 889px;
+}
+
+.toppage_left{
+    width: 55%;
+    background: linear-gradient(orange 50%, yellow);
+}
+
+.toppage_right{
+    width: 60%;
+    height: 100%;
+    background-color: black;
+}
+
+.toppage_catchcopy{
+    color: #fff;
+    font-size: 64px;
+    font-weight: 550;
+    font-family: serif;
+    margin-top: 45px;
+    margin-left: 50px;
+}
+.toppage_start_bokutui{
+    color: #fff;
+    font-size: 31px;
+    font-weight: 550;
+    font-family: serif;
+    padding-top: 40px;
+    margin-left: 50px;
+}
+.toppage_signup_button{
+    display: block;
+    border: 1px orange;
+    border-radius: 20px;
+    padding: 0.5em 0;
+    margin: 30px;
+    margin-left: 50px;
+    width: 320px;
+    background-color: orange;
+    font-size: 0.9em;
+
+
+
+}
+.toppage_login_button{
+    display: block;
+    border: 1px orange solid;
+    border-radius: 20px;
+    padding: 0.5em 0;
+    margin: 30px;
+    margin-left: 50px;
+    width: 320px;
+    background-color:black;
+    font-size: 0.9em;
+}

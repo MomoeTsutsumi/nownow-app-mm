@@ -1,0 +1,49 @@
+<div class="ranking-wrapper">
+
+<div class="likes-rank">
+<div class="posts-rank-container">総合いいねランキング</div>
+<div class="posts-rank-header">
+<ul>
+<li class="post-head1">順位</li>
+<li class="post-head2">ユーザー名</li>
+<li class="post-head3">いいね</li>
+</ul>
+</div>
+<% @user_post_like_ranks.each.with_index(1) do |user, i| %>
+  <div class="posts-ranking-box">
+  <%= i %>
+<th><%=link_to(user.name,"/users/#{user.id}/info")%></th>
+<div class="posts-comment-count">
+<i class="far fa-heart"></i>
+<%  @likes_count = Like.where(post_id: Post.where(user_id: user.id)).count%>
+    <th><%= @likes_count %></th>
+</div>
+</div>
+<% end %>
+</div>
+
+<div class="posts-rank">
+<div class="posts-rank-container">投稿数ランキング</div>
+<div class="posts-rank-header">
+<ul>
+<li class="post-head1">順位</li>
+<li class="post-head2">ユーザー名</li>
+<li class="post-head3">投稿数</li>
+</ul>
+</div>
+
+<% @user_post_ranks.each.with_index(1) do |user, i| %>
+<div class="posts-ranking-box">
+<%= i %>
+<th><%=link_to(user.name,"/users/#{user.id}/info")%></th>
+<div class="posts-comment-count">
+<i class="far fa-comment"></i>
+ <%  @posts_count = Post.where(user_id: user.id).count%>
+    <th><%= @posts_count %></th>
+</div>
+</div>
+<%end %>
+</div>
+
+
+</div>

@@ -1,0 +1,73 @@
+// Place all the styles related to the ranks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.ranking-wrapper{
+    position: fixed;
+    width: 388px;
+    height: 889px;
+    margin-left: 1094px;
+    border-left: #c1ced7 solid 1px;
+    background-color: black;
+}
+.likes-rank{
+width: 331px;
+height: 400px;
+background: linear-gradient(-194deg, #7506d6,#e771ff);
+border-radius: 12px;
+margin-top: 25px;
+margin-left: 30px;
+color: white;
+
+}
+
+.posts-rank{
+    width: 331px;
+    height: 400px;
+    background: linear-gradient(-167deg, #0400f5,#08daff);
+    border-radius: 12px;
+    margin-top: 30px;
+    margin-left: 30px;
+    color: white;
+}
+.posts-rank-container{
+    font-size: 20px;
+    text-align: center;
+    border-bottom: white solid 1px;
+    padding: 5px 0px;
+
+}
+.posts-ranking-box a{
+    color: white;
+    text-decoration: none;
+    margin-left: 83px;
+}
+.posts-ranking-box a:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.posts-ranking-box{
+    margin: 21px;
+    margin-left: 30px;
+}
+ul{
+    display: flex;
+    margin: auto;
+    padding-left: 18px;
+}
+.posts-rank-header{
+    padding-top: 5px;
+}
+.posts-rank-header li{
+    list-style: none;
+}
+.post-head2{
+    padding-left: 69px;
+}
+.post-head3{
+    padding-left: 55px;
+}
+.posts-comment-count{
+    width: 47px;
+    float: right;
+}

@@ -1,0 +1,27 @@
+<%=render "ranks/rank" %>
+<%=render "layouts/left_sidebar" %>
+
+<div class="edit-wrapper">
+<div class="edit-header">
+<%=link_to("/posts/#{@post.id}")do %>
+<i class="back-btn fas fa-undo-alt">戻る</i>
+<% end %>
+</div>
+<div class="edit-inner">
+<img  class="post-image-inner" src="<%= "/user_images/#{@current_user.image_name}" %>" style="margin-top:23px;">
+    <div class="edit-user-name">
+    <p><%= @current_user.name %></p>
+    </div>
+    <div class="comment-space">
+    <%= form_tag("/posts/#{@post.id}/update") do %>
+    <div class="form">
+        <textarea class="comment-area-edit" name= "content"><%= @post.content %></textarea>
+        <input class="comment-submit-edit" type="submit" value="保存" style="margin-right:40px;">
+      </div>
+    <% end %>
+    </div>
+    </div>
+</div>
+
+
+
