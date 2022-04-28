@@ -1,0 +1,93 @@
+
+<%=render "ranks/rank" %>
+<%=render "layouts/left_sidebar" %>
+
+<div class="main-posts-show">
+  <div class="main-posts-show-container">
+  <div class="main-posts-show-header">
+  <a href="http://localhost:3001/posts/index">
+  <i class="fas fa-arrow-circle-left"></i>
+  <%=link_to("tweet","/posts/index") %>
+  </a>
+  </div>
+    <div class="posts-show-item">
+      <div class="posts-user-name-show">
+        <img class="user-image-inner" src="<%= "/user_images/#{@user.image_name}" %>" style="float:left; margin-top:5px;">
+        <div class="name-email">
+        <div class="poster-name">
+        <%=link_to(@user.name,"/users/#{@user.id}/info") %>
+        </div>
+        <div class="poster-email">
+        <%=link_to(@user.email,"/users/#{@user.id}/info")%>
+      </div>
+      </div>
+      </div>
+      <p>
+        <%= @post.content %>
+      </p>
+      <div class="posts-like-time">
+      <div class="posts-likes-like">
+       <% if Like.find_by(user_id: @current_user.id, post_id: @post.id) %>
+       <%= link_to("/likes/#{@post.id}/destroy", {method: "post"}) do %>
+       <i class="liked-btn fas fa-heart"></i>
+       <% end %>
+      <% else %>
+       <%=link_to("/likes/#{@post.id}/create",{method: "post"}) do %>
+       <i class="unliked-btn far fa-heart"></i>
+       <% end %>
+      <% end %>
+       <%  @likes_count = Like.where(post_id: @post.id).count%>
+       <%= @likes_count %>
+       </div>
+      <div class="post-time">
+        <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %> 
+      </div>
+      </div>
+       <% if @post.user_id == @current_user.id %>
+      <div class="post-menus">
+        <div class="posts-edit-btn">
+        <%= link_to("/posts/#{@post.id}/edit")do %>
+        <i class="fas fa-edit" style="font-weight: normal;">編集</i>
+        <% end %>
+        </div>
+        <div class="posts-destroy-btn">
+        <%= link_to("/posts/#{@post.id}/destroy", {method: "post"}) do %>
+       <i class="far fa-trash-alt">削除</i>
+       <% end %>
+       
+      </div>
+      </div>
+        <% end %>
+        </div>
+        </div>
+
+         <div class="comments-wrapper">
+         <img  class="post-image-inner" src="<%= "/user_images/#{@current_user.image_name}" %>" style="margin-top:23px;">
+         <div class="comment-space">
+         <%= form_tag("/comments/#{@post.id}/create", {method: "post"}) do %>
+      <textarea class="comment-area" name="content"  placeholder="コメントする"></textarea>
+    <input class="comment-submit" type="submit" >
+     </div>
+    <% end %>
+    </div>
+  
+  <div class="comment-body">
+<% @comments.each do |comment| %>
+<div class="commnet-show">
+ <%=link_to("/users/#{comment.user.id}/info") do %>
+    <img class="user-image-inner" src="<%= "/user_images/#{comment.user.image_name}" %>" style="margin-left:25px; margin-top:20px; float:left;">
+     <% end %>
+     <div class="comment-inner">
+     <div class="commenter-name"><a href="/users/<%= comment.user.id %>/info"><%= comment.user.name %></a></div>
+    <div class="comment-content"><%= comment.content %></div>
+      <div class="comment-time"><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></div> 
+      </div>
+      </div>
+<% end %>
+</div>
+<div class="posts-show-footer">
+</div>
+</div>
+
+
+

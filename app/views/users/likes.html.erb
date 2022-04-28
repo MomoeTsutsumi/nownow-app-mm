@@ -1,0 +1,125 @@
+<%=render "layouts/left_sidebar" %>
+<%=render "ranks/rank" %>
+
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+
+<div class="main-user-info">
+  <div class="user-name-info">
+  <div class="user-name-header">
+  <a href="http://localhost:3001/posts/index">
+  <i class="fas fa-arrow-circle-left"></i>
+<%=link_to(@user.name,"/posts/index")%>
+</a>
+</div>
+</div>
+  <div class="user-container-info">
+  <div class="info-header-bar">
+  <div class="user-image-name-email">
+       <img class="user-image-inners-info" src="<%= "/user_images/#{@user.image_name}" %>">
+      <div class="user-header-name-email">
+      <div class="show-button-wrapper" style="margin-left:413px;">
+       <% if @user.id==@current_user.id %>
+      <button type="button" class="edit-name-email btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style="background-color:orange; border-color:orange; margin-left;">編集</button>
+      <% end %>
+      </div>
+      <h2><%= @user.name %></h2>
+      <p><%= @user.email %></p>
+      </div>
+      </div>
+      </div>
+      </div>
+      <div class="posts-info-wrapper">
+      <div class="post-info-item-container">
+       <div class="user-tabs">
+      <p class="active"><%= link_to("投稿", "/users/#{@user.id}/info") %></p>
+      <p class="like-posts-wrapper"><%= link_to("いいね!", "/users/#{@user.id}/likes") %></p>
+    </div>
+      </div>
+      <%@likes.each do |like|%>
+      <% post=Post.find_by(id: like.post_id) %>
+        
+      <div class="posts-index-item-info">
+        <div class="post-left">
+            <img class="post-left-inner-info" src="<%= "/user_images/#{post.user.image_name}" %>">
+        </div>
+        <div class="post-right-info">
+        <div class="post-name-content">
+          <div class="post-user-name-info">
+            <%= link_to(post.user.name, "/users/#{post.user.id}/info") %>
+          </div>
+          <div class="posts-user-content-info">
+          <%= link_to(post.content, "/posts/#{post.id}") %>
+        </div>
+        </div>
+
+         <div class="like-btn-time">
+      <div class="like-btn-wrapper">
+         <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
+      <%=link_to("/likes/#{post.id}/destroy",{method: "post"} )do %>
+  <i class="fas fa-heart liked-btn"></i>
+  <% end %>
+      <% else %>
+    <%=link_to("/likes/#{post.id}/create", {method: "post"}) do %>
+    <i class="far fa-heart unliked-btn"></i>
+        <%end%>
+      <% end %>
+       <%  @likes_count = Like.where(post_id: post.id).count%>
+    <%= @likes_count %>
+        </div>
+     
+        <div class="post-created-time-info">
+        <%= post.created_at.strftime("%Y-%m-%d %H:%M") %> 
+        </div>
+        </div>
+         </div>
+      </div>
+    <% end %>
+    
+  </div>
+  </div>
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border-radius:20px;">
+  <div class="edit-container">
+    <div class="edit-form-heading">プロフィールを編集</div>
+    <div class="form-users-form">
+      <div class="edit-form-body">
+       <% @user.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+         <%= form_tag("/users/#{@user.id}/update",{multipart: true}) do %>
+        <div class="img-edit">
+        <div class="file-up">
+        <input name="image" type="file">
+        </div>
+        </div>
+         <div class="edit-textlines">
+         <div class="edit-text">名前</div>
+        <input  class="edit-textlines-inner"  value="<%=@user.name %>" name="name" >
+        </div>
+        <div class="edit-textlines">
+        <div class="edit-text">メールアドレス</div>
+        <input class="edit-textlines-inner" value="<%=@user.email %>" name="email">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" value="保存">
+         <% end %>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+

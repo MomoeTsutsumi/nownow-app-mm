@@ -1,0 +1,19 @@
+<%=render "layouts/left_sidebar" %>
+<div class="main-users-index">
+  <div class="main-users-container">
+    <h1 class="users-heading">USER LIST</h1>
+    <% @users.each do|user|%>
+      <div class="users-index-item">
+         <div class="user-left">
+         <%=link_to("/users/#{user.id}/info") do %>
+          <img src="<%= "/user_images/#{user.image_name}" %>">
+         <% end %>
+         </div>
+        <div class="user-right">
+          <%=link_to(user.name,"/users/#{user.id}/info") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

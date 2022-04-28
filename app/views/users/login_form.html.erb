@@ -1,0 +1,45 @@
+<div class="main-users-new">
+    <div class="main-users-new-inner">
+  <div class="container">
+  <div class="close-button">
+  <%=link_to("×", "/",{class: "close"})%>
+  </div>
+  <div class="comment-item">
+  <i class="fas fa-comment" style="font-size:40px;"></i>
+  </div>
+    <div class="form-heading">ログイン</div>
+    <div class="form users-form">
+      <div class="form-body">
+   <% if @error_message %>
+          <div class="form-error">
+            <%= @error_message %>
+          </div>
+        <% end %>
+       <%= form_tag("/login") do %>
+      <div class="name-input">
+        <input class="textlines" placeholder="メールアドレス" name="email">
+        </div>
+        <div class="email-input">
+        <input class="textlines" placeholder="パスワード" type="password" name="password">
+        </div>
+        <div class="signup-button">
+        <input type="submit" value="ログイン" style="display: block;
+    border: 1px rgb(214, 142, 9) solid;
+    border-radius: 20px;
+    padding: 0.5em 0;
+    margin: 30px;
+    margin-left: 140px;
+    width: 320px;
+    background-color:rgb(214, 142, 9);
+    font-size: 0.9em;
+    color: white;
+    cursor: pointer;
+    ">
+     
+        </div>
+        <% end %>  
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="main-users-new">
+    <div class="main-users-new-inner">
+  <div class="container">
+  <div class="close-button">
+  <%=link_to("×", "/",{class: "close"})%>
+  </div>
+  <div class="comment-item">
+  <i class="fas fa-comment" style="font-size:40px;"></i>
+  </div>
+    <div class="form-heading">アカウントを作成</div>
+    <div class="form users-form">
+      <div class="form-body">
+      <% @user.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+
+       <%= form_tag("/users/create") do %>
+      <div class="name-input">
+        <input class="textlines" placeholder="名前" name="name" value="<%=@user.name%>">
+        </div>
+        <div class="email-input">
+        <input class="textlines" placeholder="メールアドレス" name="email" value="<%=@user.email%>">
+        </div>
+        <div class="password-input">
+         <input class="textlines" name="password" type="password" value="<%= @user.password %>" placeholder="パスワード">
+        </div>
+        <div class="signup-button">
+        <input  type="submit" value="アカウントを作成する" style="display: block;
+    border: 1px rgb(214, 142, 9) solid;
+    border-radius: 20px;
+    padding: 0.5em 0;
+    margin: 30px;
+    margin-left: 140px;
+    width: 320px;
+    background-color:rgb(214, 142, 9);
+    font-size: 0.9em;
+    color: white;
+    cursor: pointer;
+    ">
+     
+        </div>
+        <% end %>  
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

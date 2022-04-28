@@ -1,0 +1,65 @@
+<div class="left_sidebar_wrapper">
+
+<div class="left_sidebar_icon_wrapper1">
+<a href= "http://localhost:3001/posts/index">
+    <i class="left_sidebar_icon fas fa-comment" ></i>
+    </a>
+</div>
+
+<div class="left_sidebar_icon_wrapper">
+<div class="left_sidebar-i">
+<i class="left_sidebar_icon fas fa-home"></i>
+</div>
+<div class="icon-text-li">
+<%=link_to("ホーム","/posts/index")%>
+</div>
+</div>
+
+
+<div class="left_sidebar_icon_wrapper">
+<div class="left_sidebar-i">
+<i class="left_sidebar_icon fas fa-user"></i>
+</div>
+<div class="icon-text-li">
+<% if @current_user %>
+  <%= link_to("プロフィール", "/users/#{@current_user.id}") %>
+  <% end %>
+</div>
+</div>
+
+<div class="left_sidebar_icon_wrapper">
+<div class="left_sidebar-i">
+<i class="left_sidebar_icon fas fa-users"></i>
+</div>
+<div class="icon-text-li">
+<%=link_to("ユーザー一覧","/users/index")%>
+</div>
+</div>
+
+<div class="left_sidebar_icon_wrapper">
+<div class="left_sidebar-i">
+<i class="left_sidebar_icon fas fa-sign-out-alt"></i>
+</div>
+<div class="icon-text-li">
+<%=link_to("ログアウト","/logout",{method: "post"})%>
+</div>
+</div>
+
+<span id="back">
+    <a href="">
+     <i class="up-icon fas fa-arrow-circle-up"></i>
+    </a>
+  </span>
+
+<div class="left_sidebar_icon_wrapper-show">
+<div class="icon-text-li">
+<% if @current_user %>
+<%=link_to("/users/#{@current_user.id}") do %>
+<img class="user-image-inner" src="<%= "/user_images/#{@current_user.image_name}" %>">
+  <% end %>
+  <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
+  <% end %>
+</div>
+</div>
+
+</div>
