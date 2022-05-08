@@ -1,0 +1,71 @@
+[33mcommit 868cc5351d355d10f03df5badb144866646aa225[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: TsutsumiMomoe <momoe870605@gmail.com>
+Date:   Sun May 8 22:57:49 2022 +0900
+
+    dockerchange
+
+[33mcommit 8ea2e045721f6d9d270091baf5b05803030157e3[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: TsutsumiMomoe <momoe870605@gmail.com>
+Date:   Sun May 8 22:28:28 2022 +0900
+
+    mmm
+
+[33mcommit 8a642f82daf2304a132ff0b1027b39b3ba2e9612[m
+Author: TsutsumiMomoe <momoe870605@gmail.com>
+Date:   Sun May 8 21:13:11 2022 +0900
+
+    first commit
+
+[33mcommit 6dab133f8bf22cecbbe6ecc203fa65b93a404926[m[33m ([m[1;31mheroku/main[m[33m)[m
+Author: TsutsumiMomoe <momoe870605@gmail.com>
+Date:   Sun May 8 10:11:48 2022 +0900
+
+    make it better
+
+[33mcommit 9d34082c4b779451f1fa93ab0c165e4880fe7750[m
+Author: TsutsumiMomoe <momoe870605@gmail.com>
+Date:   Sun May 8 08:07:24 2022 +0900
+
+    make it better
+
+[33mcommit ef7ab4915c910294ea6c8821f5078282a8f2bc10[m
+Author: TsutsumiMomoe <momoe870605@gmail.com>
+Date:   Fri Apr 29 10:23:19 2022 +0900
+
+    first commit
+
+[33mcommit d5efddc603c2dcbb9f3b5bc61fc5196d17a6443d[m
+Author: TsutsumiMomoe <momoe870605@gmail.com>
+Date:   Fri Apr 29 05:02:41 2022 +0900
+
+    commit-message
+
+[33mcommit 88335e851f8b12f0e9ce3b300be19779236a06bb[m[33m ([m[1;32mdevelop[m[33m)[m
+Author: TsutsumiMomoe <momoe870605@gmail.com>
+Date:   Sat Sep 25 04:15:38 2021 +0900
+
+    URLの修正
+
+[33mcommit c3f20d35386370b8f404c7ed6221a46cd3b8205b[m
+Author: TsutsumiMomoe <momoe870605@gmail.com>
+Date:   Sat Sep 25 04:11:44 2021 +0900
+
+    README.mdに開発環境作成/起動方法を記載
+
+[33mcommit f15ae7375661560009262c221d3f359fc946859a[m
+Author: TsutsumiMomoe <momoe870605@gmail.com>
+Date:   Sat Sep 25 04:07:22 2021 +0900
+
+    viewの変更がすぐに反映されるよう設定を変更
+
+[33mcommit 9241d8dba3e1c7323c4ecb164c5ea215220ed2fb[m
+Author: TsutsumiMomoe <momoe870605@gmail.com>
+Date:   Sat Sep 25 04:06:46 2021 +0900
+
+    環境構築
+
+[33mcommit 91a3a532c7336918ed57d20da04b622e116cc5fd[m
+Author: MomoeTsutsumi <90708412+MomoeTsutsumi@users.noreply.github.com>
+Date:   Sat Sep 25 01:41:04 2021 +0900
+
+    Create README.md
