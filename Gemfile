@@ -63,3 +63,8 @@ gem 'bootstrap', '~> 4.3.1'
 
 gem 'carrierwave'
 gem 'rmagick'
+
+gem 'net-smtp'
+# ついでに以下の2つも追加しておく方が良さそう
+gem 'net-imap'
+gem 'net-pop'
