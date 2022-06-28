@@ -74,4 +74,4 @@ gem 'selenium-webdriver', '~> 4.2.1'
 gem 'rack-test','~> 1.1.0'
 gem 'sprockets','~> 4.0.3'
 
-#database.ymlとapplication.html.erb変えた（githubと違うとこある）
+#database.yml変えた（githubと違うとこある）
